@@ -1,0 +1,66 @@
+{
+  "name": "dsh-session-shift",
+  "version": "0.2.2",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client/handoff-client.js",
+    "./package.json": "./package.json",
+    "./lib/*": "./lib/*"
+  },
+  "description": "DSH 插件：上下文压力到阈值、或本会话被压缩次数到上限时，自动把工作交接给一个新会话——交接包从会话机械提取（改动过的文件 / 用过的工具 / 最近几轮消息 / 停在哪儿），不过模型，落盘可审阅。",
+  "license": "MIT",
+  "homepage": "https://github.com/easerlee/dsh-session-shift#readme",
+  "bugs": {
+    "url": "https://github.com/easerlee/dsh-session-shift/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easerlee/dsh-session-shift.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "handoff",
+    "handover",
+    "session",
+    "shift",
+    "context",
+    "compaction",
+    "context-window",
+    "auto-handoff"
+  ],
+  "files": [
+    "lib",
+    "client",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-llm": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    }
+  }
+}
